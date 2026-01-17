@@ -58,14 +58,14 @@ export async function GET(req: NextRequest) {
         riskLevel: student.burnoutScores[0]?.riskLevel || "LOW",
         lastCheckIn: student.dailyCheckIns[0]?.date || null,
       }))
-      .sort((a, b) => b.burnoutScore - a.burnoutScore); // Sort by highest risk first
+      .sort((a: any, b: any) => b.burnoutScore - a.burnoutScore); // Sort by highest risk first
 
     // Calculate statistics
     const stats = {
       total: students.length,
-      critical: highRiskStudents.filter((s) => s.riskLevel === "CRITICAL").length,
-      high: highRiskStudents.filter((s) => s.riskLevel === "HIGH").length,
-      moderate: highRiskStudents.filter((s) => s.riskLevel === "MODERATE").length,
+      critical: highRiskStudents.filter((s: any) => s.riskLevel === "CRITICAL").length,
+      high: highRiskStudents.filter((s: any) => s.riskLevel === "HIGH").length,
+      moderate: highRiskStudents.filter((s: any) => s.riskLevel === "MODERATE").length,
     };
 
     return NextResponse.json({
