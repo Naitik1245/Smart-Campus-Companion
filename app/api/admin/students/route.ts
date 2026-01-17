@@ -41,7 +41,7 @@ export async function GET(req: NextRequest) {
 
     // Filter students with moderate to critical risk levels
     const highRiskStudents = students
-      .filter((student) => {
+      .filter((student: typeof students[number]) => {
         const latestScore = student.burnoutScores[0];
         return (
           latestScore &&
@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
             latestScore.riskLevel === "CRITICAL")
         );
       })
-      .map((student) => ({
+      .map((student: typeof students[number]) => ({
         id: student.id,
         name: student.name || "Anonymous",
         email: student.email,
